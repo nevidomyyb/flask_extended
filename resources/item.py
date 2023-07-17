@@ -4,9 +4,9 @@ from flask_smorest import Blueprint, abort
 from flask import request
 import uuid
 
-blb = Blueprint('items', __name__, description="Items operations")
+blp = Blueprint("items", __name__, description="Items operations")
 
-blb.route('/item/<item_id>/')
+@blp.route('/item/<item_id>/')
 class Item(MethodView):
     def get(self, item_id):
         try:
@@ -32,7 +32,7 @@ class Item(MethodView):
         except KeyError:
             abort(400, message="Item not found.")
 
-blb.route('/item/')
+@blp.route('/item/')
 class ItemList(MethodView):
 
     def get(self):
@@ -56,3 +56,4 @@ class ItemList(MethodView):
         item_id = uuid.uuid4().hex
         item = {**item_data, "id": item_id}
         items[item_id] = item
+        return item
