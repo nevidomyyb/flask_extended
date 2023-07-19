@@ -3,16 +3,17 @@ from marshmallow import Schema, fields
 #Schema is used to validate incoming data
 
 class PlainItemSchema(Schema):
-    id = fields.Str(dump_only=True)
+    id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
     price = fields.Float(required=True)
 
 class ItemUpdateSchema(Schema):
     name = fields.Str()
     price = fields.Float()
+    store_id = fields.Int()
 
 class PlainStoreSchema(Schema):
-    id = fields.Str(dump_only=True)
+    id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
 
 class ItemSchema(PlainItemSchema):
